@@ -274,7 +274,7 @@ export const SheetTabs: React.FC = () => {
             className="opacity-75 hover:opacity-100 transition-opacity flex items-center shrink-0"
           >
             <img 
-              src="https://www.netlify.com/assets/badges/netlify-badge-color-accent.svg" 
+              src="https://www.netlify.com/assets/badges/netlify-badge-color-bg.svg" 
               alt="Deploys by Netlify" 
               className="h-4 w-auto block"
             />

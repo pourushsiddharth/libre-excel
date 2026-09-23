@@ -78,4 +78,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-[![Deploys by Netlify](https://www.netlify.com/assets/badges/netlify-badge-color-accent.svg)](https://www.netlify.com)
+[![Deploys by Netlify](https://www.netlify.com/assets/badges/netlify-badge-color-bg.svg)](https://www.netlify.com)

@@ -585,7 +585,7 @@ export const HelpModal: React.FC = () => {
               className="inline-flex items-center opacity-80 hover:opacity-100 transition-opacity"
             >
               <img 
-                src="https://www.netlify.com/assets/badges/netlify-badge-color-accent.svg" 
+                src="https://www.netlify.com/assets/badges/netlify-badge-color-bg.svg" 
                 alt="Deploys by Netlify" 
                 className="h-4 w-auto"
               />
