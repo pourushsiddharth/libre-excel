@@ -542,14 +542,27 @@ export const SpreadsheetGrid: React.FC = () => {
                 const colW = getColWidth(c);
 
                 // Format display value
-                let displayVal = cell?.value ?? '';
-                if (cell?.style?.format === 'currency' && !isNaN(Number(displayVal)) && displayVal !== '') {
-                  displayVal = '$' + Number(displayVal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                } else if (cell?.style?.format === 'percent' && !isNaN(Number(displayVal)) && displayVal !== '') {
-                  displayVal = (Number(displayVal) * 100).toFixed(1) + '%';
-                }
-
                 const style = cell?.style || {};
+                let displayVal = cell?.value ?? '';
+                const numVal = Number(displayVal);
+                const isNumeric = !isNaN(numVal) && displayVal !== '' && typeof displayVal !== 'boolean';
+
+                if (isNumeric) {
+                  const dec = typeof style.decimals === 'number' ? style.decimals : undefined;
+
+                  if (style.format === 'currency') {
+                    const minDec = dec !== undefined ? dec : 2;
+                    displayVal = '$' + numVal.toLocaleString('en-US', { minimumFractionDigits: minDec, maximumFractionDigits: minDec });
+                  } else if (style.format === 'percent') {
+                    const minDec = dec !== undefined ? dec : 1;
+                    displayVal = (numVal * 100).toFixed(minDec) + '%';
+                  } else if (style.format === 'number') {
+                    const minDec = dec !== undefined ? dec : 2;
+                    displayVal = numVal.toLocaleString('en-US', { minimumFractionDigits: minDec, maximumFractionDigits: minDec });
+                  } else if (dec !== undefined) {
+                    displayVal = numVal.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+                  }
+                }
                 const effectiveBg = isSelected && !isActive ? undefined : style.bgColor;
                 let effectiveTextColor = style.textColor;
 

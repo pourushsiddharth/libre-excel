@@ -282,6 +282,7 @@ export const Ribbon: React.FC = () => {
   const { 
     activeRibbonTab, 
     setSelectionStyle, 
+    adjustSelectionDecimals,
     setIsChartModalOpen, 
     setIsTemplatesModalOpen,
     setIsFindReplaceOpen,
@@ -738,16 +739,16 @@ export const Ribbon: React.FC = () => {
             ,
           </button>
           <button
-            onClick={() => setSelectionStyle({ decimals: 2 })}
-            title="Increase Decimal"
-            className="p-1 h-6 hover:bg-gray-100 rounded text-gray-700 flex items-center justify-center"
+            onClick={() => adjustSelectionDecimals(1)}
+            title="Increase Decimal (.00 ->)"
+            className="p-1 h-6 hover:bg-gray-100 rounded text-gray-700 flex items-center justify-center cursor-pointer"
           >
             <span className="material-symbols-outlined text-[18px]">decimal_increase</span>
           </button>
           <button
-            onClick={() => setSelectionStyle({ decimals: 0 })}
-            title="Decrease Decimal"
-            className="p-1 h-6 hover:bg-gray-100 rounded text-gray-700 flex items-center justify-center"
+            onClick={() => adjustSelectionDecimals(-1)}
+            title="Decrease Decimal (.0 <-)"
+            className="p-1 h-6 hover:bg-gray-100 rounded text-gray-700 flex items-center justify-center cursor-pointer"
           >
             <span className="material-symbols-outlined text-[18px]">decimal_decrease</span>
           </button>

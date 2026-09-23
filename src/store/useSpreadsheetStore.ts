@@ -53,6 +53,7 @@ interface SpreadsheetState {
   // Cell editing & calculation
   setCellValue: (cellId: string, raw: string, skipSnapshot?: boolean) => void;
   setSelectionStyle: (style: Partial<CellStyle>) => void;
+  adjustSelectionDecimals: (delta: number) => void;
   recalculateSheet: (sheetId?: string) => void;
   clearSelection: (mode?: 'all' | 'contents' | 'formats') => void;
   sortRange: (col: number, direction: 'asc' | 'desc') => void;
@@ -735,6 +736,42 @@ export const useSpreadsheetStore = create<SpreadsheetState>((set, get) => ({
           style: {
             ...cell.style,
             ...stylePatch
+          }
+        };
+      }
+    }
+
+    set((state) => ({
+      sheets: state.sheets.map((s) => (s.id === activeSheetId ? { ...s, data: updatedData } : s))
+    }));
+  },
+
+  adjustSelectionDecimals: (delta) => {
+    const { sheets, activeSheetId, selection, permissionMode } = get();
+    if (permissionMode === 'view') return;
+    const sheet = sheets.find((s) => s.id === activeSheetId);
+    if (!sheet) return;
+
+    get().saveSnapshot();
+
+    const updatedData: SheetData = { ...sheet.data };
+    const minRow = Math.min(selection.start.row, selection.end.row);
+    const maxRow = Math.max(selection.start.row, selection.end.row);
+    const minCol = Math.min(selection.start.col, selection.end.col);
+    const maxCol = Math.max(selection.start.col, selection.end.col);
+
+    for (let r = minRow; r <= maxRow; r++) {
+      for (let c = minCol; c <= maxCol; c++) {
+        const id = coordsToCellId(c, r);
+        const cell = updatedData[id] || { raw: '', value: '' };
+        const currentDecimals = typeof cell.style?.decimals === 'number' ? cell.style.decimals : 0;
+        const newDecimals = Math.max(0, Math.min(10, currentDecimals + delta));
+        
+        updatedData[id] = {
+          ...cell,
+          style: {
+            ...cell.style,
+            decimals: newDecimals
           }
         };
       }
