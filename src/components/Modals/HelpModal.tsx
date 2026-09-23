@@ -571,9 +571,25 @@ export const HelpModal: React.FC = () => {
 
         {/* Modal Footer */}
         <div className="px-7 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-          <div className="flex items-center gap-1.5 text-[11px] text-slate-500 tracking-wide">
-            <Info className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-            <span>Search any command or formula instantly with <kbd className="font-mono bg-white px-1.5 py-0.5 border border-slate-200 rounded text-[10px] text-slate-700 shadow-2xs">Alt + Q</kbd></span>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1.5 text-[11px] text-slate-500 tracking-wide">
+              <Info className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+              <span>Search any command or formula instantly with <kbd className="font-mono bg-white px-1.5 py-0.5 border border-slate-200 rounded text-[10px] text-slate-700 shadow-2xs">Alt + Q</kbd></span>
+            </div>
+            <div className="h-3.5 w-px bg-slate-200 hidden sm:block" />
+            <a 
+              href="https://www.netlify.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              title="Deploys by Netlify"
+              className="inline-flex items-center opacity-80 hover:opacity-100 transition-opacity"
+            >
+              <img 
+                src="https://www.netlify.com/assets/badges/netlify-badge-color-accent.svg" 
+                alt="Deploys by Netlify" 
+                className="h-4 w-auto"
+              />
+            </a>
           </div>
           <button
             onClick={() => setIsHelpModalOpen(false)}

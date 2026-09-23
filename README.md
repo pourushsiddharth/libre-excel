@@ -75,3 +75,7 @@ Ensure you have [Node.js](https://nodejs.org/) installed (version 18 or higher r
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+---
+
+[![Deploys by Netlify](https://www.netlify.com/assets/badges/netlify-badge-color-accent.svg)](https://www.netlify.com)

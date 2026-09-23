@@ -263,6 +263,23 @@ export const SheetTabs: React.FC = () => {
             {zoomLevel}%
           </span>
         </div>
+
+        {/* Netlify Deployment Badge */}
+        <div className="border-l border-gray-300 pl-2.5 flex items-center">
+          <a 
+            href="https://www.netlify.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            title="Deploys by Netlify"
+            className="opacity-75 hover:opacity-100 transition-opacity flex items-center shrink-0"
+          >
+            <img 
+              src="https://www.netlify.com/assets/badges/netlify-badge-color-accent.svg" 
+              alt="Deploys by Netlify" 
+              className="h-4 w-auto block"
+            />
+          </a>
+        </div>
       </div>
     </div>
   );
